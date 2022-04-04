@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
 </head>
+
 <body>
   <p><em>Uses for array</em> 💁</p>
   <div class="content">
-      <!-- Content here -->
+    <!-- Content here -->
   </div>
   <script>
     // Get your shorts on - this is an array workout!
@@ -39,7 +41,7 @@
     ];
 
     const content = document.querySelector(".content")
-    
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
     const filter = document.createElement("h1")
@@ -49,14 +51,14 @@
     const div1500 = document.createElement("ul")
 
     const s1500 = inventors.filter(e => {
-        return e.year >= 1500 && e.year < 1600
+      return e.year >= 1500 && e.year < 1600
     })
 
     s1500.forEach(e => {
-        const list = document.createElement("li")
+      const list = document.createElement("li")
 
-        list.innerHTML = `${e.first}`
-        div1500.appendChild(list)
+      list.innerHTML = `${e.first}`
+      div1500.appendChild(list)
     })
     content.appendChild(div1500)
 
@@ -72,10 +74,10 @@
 
     const names = inventors.map(e => `${e.first} ${e.last}`)
     names.forEach(e => {
-        const list = document.createElement("li")
+      const list = document.createElement("li")
 
-        list.innerHTML = `${e}`
-        divNames.appendChild(list)
+      list.innerHTML = `${e}`
+      divNames.appendChild(list)
     })
     content.appendChild(divNames)
 
@@ -92,14 +94,14 @@
     const sorted = inventors.sort((a, b) => a.year - b.year)
 
     sorted.forEach(e => {
-        const list = document.createElement("li")
+      const list = document.createElement("li")
 
-        list.innerHTML = `${e.first} - ${e.year}`
-        divSorted.appendChild(list)
+      list.innerHTML = `${e.first} - ${e.year}`
+      divSorted.appendChild(list)
     })
     content.appendChild(divSorted)
-    
-    
+
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
@@ -110,7 +112,7 @@
     const divReduce = document.createElement("ul")
 
     const reduced = inventors.reduce((value, element) => {
-        return value + (element.passed - element.year)
+      return value + (element.passed - element.year)
     }, 0)
 
     const reduceList = document.createElement("li")
@@ -118,7 +120,7 @@
     divReduce.appendChild(reduceList)
     content.appendChild(divReduce)
 
-    
+
 
     // 5. Sort the inventors by years lived
     const sortYears = document.createElement("h1")
@@ -128,14 +130,14 @@
     const divSortedYears = document.createElement("ul")
 
     const sortedYears = inventors.sort((a, b) => {
-        return (a.passed - a.year) - (b.passed - b.year)
+      return (a.passed - a.year) - (b.passed - b.year)
     })
 
     sortedYears.forEach(e => {
-        const list = document.createElement("li")
+      const list = document.createElement("li")
 
-        list.innerHTML = `${e.first} - ${e.passed - e.year} years`
-        divSortedYears.appendChild(list)
+      list.innerHTML = `${e.first} - ${e.passed - e.year} years`
+      divSortedYears.appendChild(list)
     })
     content.appendChild(divSortedYears)
 
@@ -143,17 +145,66 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-    
+
+    // const category = document.querySelector('.mw-category')
+    // const links = Array.from(category.querySelector('a'))
+    // const de = links
+    //               .map(link => link.textContent)
+    //               .filter(streetName => streetName.includes('de'))
 
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const sortName = document.createElement("h1")
+    sortName.innerHTML = "Sort by name"
+    content.appendChild(sortName)
+
+    const divSortedName = document.createElement("ul")
+
+    const sortedName = people.sort((a, b) => {
+      const first = a.split(', ') 
+      const second = b.split(', ')
+      return first[0].localeCompare(second[0])
+    })
+
+    sortedName.forEach(e => {
+      const list = document.createElement("li")
+
+      list.innerHTML = `${e}`
+      divSortedName.appendChild(list)
+    })
+    content.appendChild(divSortedName)
+
+
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];  
+
+    const reduceSum = document.createElement("h1")
+    reduceSum.innerHTML = "Sum of vehicles"
+    content.appendChild(reduceSum)
+
+    const divReduceSum = document.createElement("ul")
+
+    const transportation = data.reduce((obj, item) => {
+      if(!obj[item]){
+        obj[item] = 0
+      }
+      obj[item]++;
+      return obj
+    }, {})
+
+    for(e in transportation){
+      const list = document.createElement("li")
+
+      list.innerHTML = `${e} - ${transportation[e]}`
+      divReduceSum.appendChild(list)
+    }
+    content.appendChild(divReduceSum)
 
   </script>
 </body>
+
 </html>
